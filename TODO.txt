@@ -1,0 +1,14 @@
+
+TODO REQ:
+- Role assignment via reactions
+- String output
+- Media output
+- String + Media output
+- Welcome message
+- Goodbye message
+
+
+TODO Code:
+- Rewrite content output
+- Generalize embeds as module
+- Add GuildMemberAdd event
