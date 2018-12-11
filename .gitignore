@@ -3,6 +3,7 @@
 /*.env
 .DS-Store
 package.json
+package-lock.json
 
 # log file
 *.log
