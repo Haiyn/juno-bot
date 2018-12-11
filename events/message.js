@@ -1,24 +1,34 @@
 module.exports = (client, message) => {
 
   //REQUIRED VARIABLES
-  if (message.author.bot) return;
-  if (message.author.id != client.config.ownerID) return;
+  client.logger.log("Detected message.");
+  if (message.author.bot) {
+    client.logger.log("Author is a bot.");
+    return;
+  }
+  //if (message.author.id != client.config.ownerID) return;
   const settings = client.config.defaultSettings;
-  if (message.content.indexOf(settings.prefix) !== 0) return;
+  if (message.content.indexOf(settings.prefix) !== 0) {
+    client.logger.log("No prefix detected.");
+    return;
+  }
 
   const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+  if (args == 0) return;
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));   //TODO FIX!
-
-  client.logger.log(args);
+  client.logger.log(`Message Properties:` + args + " " + command + " " + cmd);
   //MESSAGE PROCEDURE
 
 
-  //if (args == 0) return;
 
-  if (!cmd) return;
 
-  if (cmd && !message.guild) {
+  if (!cmd) {
+    client.logger.log("Not a command.");
+    return;
+  }
+
+  if (cmd && !message.guild && message.guild.guildOnly) {
     message.channel.send("This command is unavailable via private message. Please run this command in a guild.");
     client.logger.log(`DM Forgery attempty by ${message.author}`);
     return;
@@ -27,7 +37,6 @@ module.exports = (client, message) => {
   //if (CatchSpecialMessages()) return;
 
   //if (SpecialMsgsChecked()) return;
-
   client.logger.cmd(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
   cmd.run(client, message, args);
 

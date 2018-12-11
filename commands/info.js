@@ -1,24 +1,25 @@
 exports.run = (client, message, args) => {
 
-	/*const Discord = require("discord.js");
-	const settings = client.config.visualSettings;	//Removes redundancy
+	const Discord = require("discord.js");
+	const settings = client.config.defaultSettings;	//Removes redundancy
+	const moment = require("moment");
 
 	const embed = new Discord.RichEmbed()
 		.setTitle("Info")
-		.setDescription("I'm GAIA. An Artificial Intelligence used for shaping the guild and helping its rulers.")
+		.setDescription("Welcome to the Space Fleet! My name is Juno.")
 		.setThumbnail(client.user.avatarURL)
-		.setColor(settings.colorGAIA)
+		.setColor(settings.color)
 		.setAuthor(client.user.username, client.user.AvatarURL)
-		.setFooter("END OF TRANSMISSION", "https://i.imgur.com/DhTMUKN.png")
-		.setTimestamp(settings.timestamp)
-		.addField("Version:", settings.version)
+		.setFooter(client.user.avatarURL)
+		.setTimestamp(${moment().format("YYYY-MM-DD HH:mm:ss")})
+		.addField("Version:", client.config.version)
 		.addField("Host:", "[Heroku PaaS](https://www.heroku.com/)")
 		.addField("Owner:", "Haiyn#7709")
 		.addField("Created with:", "JavaScript; [Node.js®](https://nodejs.org/en/); [Atom Editor](https://atom.io/); [npm](https://www.npmjs.com/get-npm); [git](https://git-scm.com/)")
-		.addField("Dependencies:", "[discord.js](https://discord.js.org/#/); [enmap](https://github.com/eslachance/enmap); [fs](https://github.com/vvakame/fs-git); [moment](https://github.com/moment/moment); [Chalk](https://github.com/chalk/chalk)");
+		.addField("Dependencies:", "[discord.js](https://discord.js.org/#/); [enmap](https://github.com/eslachance/enmap); [fs](https://github.com/vvakame/fs-git); [moment](https://github.com/moment/moment); [Chalk](https://github.com/chalk/chalk)")
+		.addField("GitHub Repository:", "https://github.com/Haiyn/juno-bot");
 
-	message.channel.send(embed);*/
-	client.logger.cmd("Ran command info");
+	message.channel.send(embed);
 }
 
 exports.conf = {
