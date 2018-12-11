@@ -18,7 +18,7 @@ exports.run = (client, message, args) => {
 		.addField("Dependencies:", "[discord.js](https://discord.js.org/#/); [enmap](https://github.com/eslachance/enmap); [fs](https://github.com/vvakame/fs-git); [moment](https://github.com/moment/moment); [Chalk](https://github.com/chalk/chalk)");
 
 	message.channel.send(embed);*/
-	client.Logger.cmd("Ran command info");
+	client.logger.cmd("Ran command info");
 }
 
 exports.conf = {

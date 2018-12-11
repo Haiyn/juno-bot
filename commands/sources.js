@@ -23,7 +23,7 @@ exports.run = (client, message, args, config) => {
         	  	  "DISCLAIMER ©2016 Sony Interactive Entertainment Europe. Horizon Zero Dawn is a trademark of Sony Interactive Entertainment America LLC. Developed by Guerrilla Games.");
 
 	message.channel.send(embed);*/
-	client.Logger.cmd("Ran command sources");
+	client.logger.cmd("Ran command sources");
 }
 
 exports.conf = {

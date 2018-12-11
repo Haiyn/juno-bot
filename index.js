@@ -3,12 +3,16 @@ const Attachment = new Discord.Attachment();
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const client = new Discord.Client();
+const Enmap = require("enmap");
+const EnmapLevel = require("enmap-level");
 
 require("./modules/functions.js")(client);
-
 client.config = require("./config.js");
 client.logger = require("./util/Logger");
 
+client.commands = new Enmap();
+client.aliases = new Enmap();
+client.settings = new Enmap({provider: new EnmapLevel({name: "settings"})});
 	// APP INIT FUNCTION
 
 const init = async () => {

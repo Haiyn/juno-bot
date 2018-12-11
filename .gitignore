@@ -4,6 +4,7 @@
 .DS-Store
 package.json
 package-lock.json
+/data
 
 # log file
 *.log

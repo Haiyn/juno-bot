@@ -29,7 +29,7 @@ exports.run = (client, message, args, level) => {
     }
   }*/
 
-  client.Logger.cmd("Ran command help");
+  client.logger.cmd("Ran command help");
 };
 
 exports.conf = {

@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
     message.delete(0);
     message.channel.send(text);
   }*/
-  client.Logger.cmd("Ran command announce");
+  client.logger.cmd("Ran command announce");
 }
 
 exports.conf = {
