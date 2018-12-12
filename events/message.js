@@ -1,24 +1,26 @@
 module.exports = (client, message) => {
 
+  /*TODO Create security guild ID check
+
+  message.channel.guild.id != client.config.defaultSettings.validGuilds) {
+    client.logger.log(`invalid guild: ${client.config.defaultSettings.validGuilds} != ${message.channel.guild.id}`);
+    return;
+  }*/
   if (message.author.bot) return;
-  if (message.channel.id == client.config.autodeletion_channels && client.config.defaultSettings.autodeletion == 'on') {
-    try {
-      client.logger.log("Message queued for deletion in 10 seconds: " + message.content);
-      message.delete(10000);
-      return;
-    }
-    catch {
-      client.logger.warn("Could not autodlete message: " + ex);
-    }
+
+  //Checks if the message was sent in an autodeletion specified in the config (autodeletionChannels) and wether or not the autodeletion setting is enabled.
+  if (message.channel.id == client.config.autodeletionChannels && client.config.defaultSettings.autodeletion == 'on') {
+    client.deleteMessage(message, 10000);
+    return;
   }
+
+  //Currently the bot is only usable by the owner
   if (message.author.id !== client.config.ownerID) return;
 
   const settings = client.config.defaultSettings;
   if (message.content.indexOf(settings.prefix) !== 0) return;
 
   const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
-  //if (args == 0) return;
-
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
 
@@ -29,6 +31,7 @@ module.exports = (client, message) => {
     if(cmd) message.channel.send("Whoops! You can't run this command via private message. Please run it in a guild!");
     return;
   }
+
   client.logger.cmd(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
   cmd.run(client, message, args);
 };

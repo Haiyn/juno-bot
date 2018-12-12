@@ -1,6 +1,35 @@
 module.exports = (client) => {
 
   /*
+  GENERIC TIMESTAMP
+
+  A generic timestamp.  TODO timestamp is in the future
+
+  */
+  client.timestamp = function() {
+    const moment = require("moment");
+    return moment().format("YYYY-MM-DD HH:mm:ss");
+  };
+
+  /*
+  GENERIC DELETION
+
+  Deletes the passes message object with a specified time in ms.
+
+  */
+  client.deleteMessage = (message, time) => {
+    try {
+      client.logger.log(`Message queued for deletion in ${time/1000} seconds: ` + message.content);
+      message.delete(time);
+      return;
+    }
+    catch {
+      client.logger.warn(`Could not delete message from ${message.author.username} (${message.author.id}) in ${message.channel.name}: ` + ex);
+    }
+  };
+
+
+  /*
   SINGLE-LINE AWAITMESSAGE
 
   const response = await client.awaitReply(msg, "Favourite Color?");

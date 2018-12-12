@@ -4,13 +4,8 @@ exports.run = (client, message, args) => {
     const urlregex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
     const fileregex = /^.((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.png$/i;
 
-    try {
-      message.delete(10);
-    }
-    catch (ex) {
-      client.logger.warn("Could not delete message: " + ex);
-    }
-
+    client.deleteMessage(message, 10);
+    
     if(args == "") {
       client.logger.warn("Cannot run Command: announce (empty string)");
       return;
