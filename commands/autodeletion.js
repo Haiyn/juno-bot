@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
     if(args == 'off') {
       client.config.defaultSettings.autodeletion = args;
-      message.channel.send(`:negative_squared_cross_mark: Autodeletion set to \`${client.config.defaultSettings.autodeletion}\``);
+      message.channel.send(`:x: Autodeletion set to \`${client.config.defaultSettings.autodeletion}\``);
       return;
     }
 
@@ -18,13 +18,12 @@ exports.run = async (client, message, args) => {
 
 exports.conf = {
   enabled: true,
-  aliases: ["adel"],
-  permLevel: "GAIA Scientist"
+  aliases: ["adel"]
 };
 
 exports.help = {
   name: "autodeletion",
   category: "System",
-  description: "Enables or disables autodeletion.",
+  description: "Enables or disables autodeletion in set channels.",
   usage: "autodeletion [on/off]"
 };

@@ -1,6 +1,16 @@
 module.exports = (client, message) => {
 
   if (message.author.bot) return;
+  if (message.channel.id == client.config.autodeletion_channels && client.config.defaultSettings.autodeletion == 'on') {
+    try {
+      client.logger.log("Message queued for deletion in 10 seconds: " + message.content);
+      message.delete(10000);
+      return;
+    }
+    catch {
+      client.logger.warn("Could not autodlete message: " + ex);
+    }
+  }
   if (message.author.id !== client.config.ownerID) return;
 
   const settings = client.config.defaultSettings;
