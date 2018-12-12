@@ -2,9 +2,10 @@ exports.run = (client, message, args) => {
     const { Attachment } = require('discord.js');
     const text = args.slice().join(" ");
     const urlregex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
+    const fileregex = /^.((\\|\/)[a-z0-9\s_@\-^!#$%&+={}\[\]]+)+\.png$/i;
 
     try {
-      message.delete(0);
+      message.delete(10);
     }
     catch (ex) {
       client.logger.warn("Could not delete message: " + ex);
@@ -14,10 +15,14 @@ exports.run = (client, message, args) => {
       client.logger.warn("Cannot run Command: announce (empty string)");
       return;
     }
-    if(args.indexOf())
-    if(urlregex.test(args) || args.indexOf('./src/') == 0) {
-      const img = new Attachment(text);
-      message.channel.send(img);
+    if(urlregex.test(args) || fileregex.test(args)) {
+      try {
+        const img = new Attachment(text);
+        message.channel.send(img);
+      }
+      catch (ex) {
+        client.logger.warn("Could not send attachment. Maybe the URL was wrong? " + ex);
+      }
       return;
     }
     message.channel.send(text);
