@@ -1,24 +1,28 @@
 exports.run = (client, message, args) => {
-  /*if(args == "") {
-    message.delete(0);
-    client.logger.error("Cannot run Command: announce (empty string)");
-    msg = message.channel.send("Usage: g!announce [message]")
-    .then(msg => {
-      msg.delete(10000);
-    })
+  if(args == "") {
+    client.logger.warn("Cannot run Command: announce (empty string)");
+    try {
+      msg.delete(0);
+    }
+    catch (ex) {
+      client.logger.warn("Could not delete message." + ex);
+    }
   }
   else {
     const text = args.slice().join(" ");
-    message.delete(0);
+    try {
+      msg.delete(0);
+    }
+    catch (ex) {
+      client.logger.warn("Could not delete message." + ex);
+    }
     message.channel.send(text);
-  }*/
-  client.logger.cmd("Ran command announce");
+  }
 }
 
 exports.conf = {
 	enabled: true,
-	aliases: ["say"],
-	permLevel: "GAIA Creator"
+	aliases: ["say"]
 };
 
 exports.help = {

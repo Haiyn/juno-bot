@@ -10,8 +10,8 @@ exports.run = (client, message, args) => {
 		.setThumbnail(client.user.avatarURL)
 		.setColor(settings.color)
 		.setAuthor(client.user.username, client.user.AvatarURL)
-		.setFooter(client.user.avatarURL)
-		.setTimestamp(${moment().format("YYYY-MM-DD HH:mm:ss")})
+		.setFooter("Juno")
+		.setTimestamp(moment().format("YYYY-MM-DD HH:mm:ss"))
 		.addField("Version:", client.config.version)
 		.addField("Host:", "[Heroku PaaS](https://www.heroku.com/)")
 		.addField("Owner:", "Haiyn#7709")
@@ -24,13 +24,12 @@ exports.run = (client, message, args) => {
 
 exports.conf = {
 	enabled: true,
-	aliases: [],
-	permLevel: "GAIA Tester"
+	aliases: []
 };
 
 exports.help = {
 	name: "info",
 	category: "Info",
-	description: "Shows information about GAIA Bot.",
+	description: "Shows information about Juno Bot.",
 	usage: "info"
 };

@@ -13,8 +13,8 @@ client.logger = require("./util/Logger");
 client.commands = new Enmap();
 client.aliases = new Enmap();
 client.settings = new Enmap({provider: new EnmapLevel({name: "settings"})});
-	// APP INIT FUNCTION
 
+// APP INIT FUNCTION
 const init = async () => {
 
 		// COMMAND LOADER

@@ -4,8 +4,7 @@ exports.run = (client, message, args) => {
 
 exports.conf = {
 	enabled: true,
-	aliases: [""],
-	permLevel: "GAIA Tester"
+	aliases: []
 };
 
 exports.help = {

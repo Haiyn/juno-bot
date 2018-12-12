@@ -1,7 +1,6 @@
 exports.run = (client, message, args, config) => {
 
-	/*const Discord = require("discord.js");
-	const settings = client.config.visualSettings; 		//Removes redundancy
+	const Discord = require("discord.js");
 	const embed = new Discord.RichEmbed()
 		.setTitle("Artist Credits")
 		.setDescription("Sources of used media in this guild:")
@@ -22,8 +21,7 @@ exports.run = (client, message, args, config) => {
 		.addField("Unsourced:",
         	  	  "DISCLAIMER ©2016 Sony Interactive Entertainment Europe. Horizon Zero Dawn is a trademark of Sony Interactive Entertainment America LLC. Developed by Guerrilla Games.");
 
-	message.channel.send(embed);*/
-	client.logger.cmd("Ran command sources");
+	message.channel.send(embed);
 }
 
 exports.conf = {
