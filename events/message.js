@@ -15,10 +15,10 @@ module.exports = (client, message) => {
   if (!cmd) return;
 
   if (!message.guild) {
-    client.logger.log(`${message.author.username} (${message.author.id}): ${message.content}`);
+    client.logger.log(`DM by \"${message.author.username}\" (${message.author.id}): ${message.content}`);
     if(cmd) message.channel.send("Whoops! You can't run this command via private message. Please run it in a guild!");
     return;
   }
-  client.logger.cmd(`DM by \"${message.author.username}\" (${message.author.id}) ran command ${cmd.help.name}`);
+  client.logger.cmd(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
   cmd.run(client, message, args);
 };
