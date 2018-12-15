@@ -23,7 +23,7 @@ module.exports = (client) => {
       message.delete(time);
       return;
     }
-    catch {
+    catch (ex) {
       client.logger.warn(`Could not delete message from ${message.author.username} (${message.author.id}) in ${message.channel.name}: ` + ex);
     }
   };
