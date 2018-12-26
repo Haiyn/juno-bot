@@ -15,7 +15,12 @@ module.exports = (client, message) => {
   }
 
   //Currently the bot is only usable by the owner
-  if (message.author.id !== client.config.ownerID) return;
+  //if (message.author.id !== client.config.ownerID) return;
+  var authorizedUser = false;
+  for(var i = 0; i <= client.config.authorizedUsers.length; i++) {        //TODO Fix access
+    if(message.author.id == client.config.authorizedUsers[i]) authorizedUser = true;
+  }
+  if(!authorizedUser) return;
 
   const settings = client.config.defaultSettings;
   if (message.content.indexOf(settings.prefix) !== 0) return;

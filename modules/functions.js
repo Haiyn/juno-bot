@@ -1,7 +1,6 @@
 module.exports = (client) => {
 
-  /*
-  GENERIC TIMESTAMP
+  /*GENERIC TIMESTAMP
 
   A generic timestamp.  TODO timestamp is in the future
 
@@ -23,11 +22,10 @@ module.exports = (client) => {
       message.delete(time);
       return;
     }
-    catch {
+    catch (ex) {
       client.logger.warn(`Could not delete message from ${message.author.username} (${message.author.id}) in ${message.channel.name}: ` + ex);
     }
   };
-
 
   /*
   SINGLE-LINE AWAITMESSAGE
@@ -40,12 +38,35 @@ module.exports = (client) => {
     const filter = m => m.author.id === msg.author.id;
     await msg.channel.send(question);
     try {
-      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ["time"] });
-      return collected.first().content;
-    } catch (e) {
+      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ["time"] })
+        .then((collected) => {
+          return collected.first().content;
+        });
+    } catch (ex) {
+      client.logger.warn("awaitReply Timeout: " + ex);
       return false;
     }
   };
+
+  //Returns content of the message, not a promise
+  client.awaitReplyContent = async (msg, question, limit = 60000) => {
+    var ret;
+    await msg.channel.send(question);
+    try {
+      await msg.channel.awaitMessages(response => msg.content, {
+        max: 1,
+        time: limit,
+        errors: ['time'],
+      }).then((collected) => {
+        client.logger.log(collected.first().content, "debug");
+        ret = collected.first().content;
+      });
+    } catch (ex) {
+      client.logger.error("Failed at awaitReplyContent: " + ex);
+    }
+    return await ret;
+  };
+
 
 
   /*

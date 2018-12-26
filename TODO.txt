@@ -1,14 +1,17 @@
 
-TODO REQ:
+TODO
 - Role assignment via reactions
-- String output
-- Media output
+  - initialise message as reaction-able message
+  - add command for adding roles to initialised message
+  - procedure for checking for new reactions
+  - role management
+X String output
+X Media output
 - String + Media output
-- Welcome message
+X Welcome message
 - Goodbye message
-
-
-TODO Code:
-- Rewrite content output
 - Generalize embeds as module
-- Add GuildMemberAdd event
+X Add GuildMemberAdd event
+- add role on joining
+- j!accept command + role assignment
+- correct typo on ./src/guidelines.png
